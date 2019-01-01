@@ -76,10 +76,10 @@ all_rules = {
         'alias': '订阅推送'
     },
 
-    # 'ThingsReminder.remind_things': {
-    #     'regex': [r'^.*[提醒].*[我俺哥姐姐爸爸].*'],
-    #     'alias': '提醒你做事情'
-    # },
+    'ThingsReminder.act': {
+        'regex': [r'^.*[提醒].*[我俺哥姐姐爸爸老子].*'],
+        'alias': '提醒你做事情'
+    },
     # 'NameChanger.change_name': {
     #     'regex': [r'^.*[取换].*个.*[名字]'],
     #     'alias': '给我取名字'

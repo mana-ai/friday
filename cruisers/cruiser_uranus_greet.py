@@ -86,7 +86,7 @@ class UranusGreetCruiser(object):
                 elif work_index == 6:
                     self.say_night_walk()
                 elif work_index == 7:
-                    self.say_good_night('hello', '金天')
+                    self.say_good_night()
                     # after did the last work, sleep until next day
                     # add 2 seconds, make sure it will get into next day
                     time.sleep(self.seconds_left_util_tomorrow() + 2)
@@ -105,7 +105,7 @@ class UranusGreetCruiser(object):
         self.msg_executor.send_msg_to_subscribers(msg)
 
     def say_news(self):
-        msg = '每日新闻播报$$想知道今天有啥大新闻吗'
+        msg = '每日新闻播报' + MSG_SPLITTER + '想知道今天有啥大新闻吗'
         self.msg_executor.send_msg_to_subscribers(msg)
 
     def say_eat_launch(self):

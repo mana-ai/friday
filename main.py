@@ -24,7 +24,7 @@ import time
 
 from cruisers.cruiser_uranus_greet import UranusGreetCruiser
 from cruisers.cruiser_uranus_news import NewsCruiser
-
+from cruisers.cruiser_todo import ToDoCruiser
 from threading import Thread
 from uranuspy.core import UranusCore
 from uranus_solver import *
@@ -40,6 +40,11 @@ def start_cruise_threads(op):
     uranus_news_thread = Thread(name='uranus_news_thread', target=uranus_news_cruiser.cruise_daily_work)
     uranus_news_thread.setDaemon(True)
     uranus_news_thread.start()
+
+    todo_cruiser = ToDoCruiser(msg_executor=op)
+    todo_cruiser_thread = Thread(name='todo_cruiser_thread', target=todo_cruiser.cruise_todo)
+    todo_cruiser_thread.setDaemon(True)
+    todo_cruiser_thread.start()
 
     # uranus_test_cruiser = UranusTestCruiser()
     # uranus_test_thread = Thread(name='uranus_test_thread', target=uranus_test_cruiser.cruise_daily_work)
