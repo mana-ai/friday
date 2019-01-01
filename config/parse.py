@@ -12,7 +12,7 @@ from datetime import datetime
 class BotParser(object):
 
     def __init__(self):
-        self.config = global_config
+        self.config = global_config.config
 
     def get_gender_response(self):
         response = np.random.choice(

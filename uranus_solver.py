@@ -5,6 +5,7 @@ from rules.rules_router import RulesRouter
 from global_session_holder import resume_session
 from config.config import global_config
 from utils.regex_verify import is_image_url
+import time
 
 MSG_SPLITTER = global_config.msg_splitter
 infer_engine = InferEngine(bot_config=global_config.config)
@@ -14,12 +15,11 @@ global_uranus_op = None
 def send_splitter_msg(msg, talk_to):
     rp_list = msg.split(MSG_SPLITTER)
     for rp in rp_list:
-        # print(' one of list: ', rp)
         if is_image_url(rp):
-            # print('is image: ', rp)
             global_uranus_op.send_img_msg(talk_to, rp)
         else:
             global_uranus_op.send_txt_msg(talk_to, rp)
+        time.sleep(2)
 
 
 # solve message arrived
@@ -56,13 +56,13 @@ def msg_callback(data):
         print('-- global_uranus_op: ', global_uranus_op)
         rp = rules_router.reasoning_command(from_talk, talk_to_dict, global_uranus_op)
         if rp is not None:
+            print('rule result: {}\n\n'.format(rp))
             send_splitter_msg(rp, talk_to)
         else:
             rp = infer_engine.infer(from_talk)
+            print('inference result: {}\n\n'.format(rp))
             if MSG_SPLITTER in rp:
                 send_splitter_msg(rp, talk_to)
-            print('inference result: {}\n\n'.format(rp))
-        return rp
 
 
 uranus = UranusCore('friday', '1195889656')
