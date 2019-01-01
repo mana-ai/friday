@@ -24,23 +24,24 @@ time_points = ['12:30', '11:00', '8:30']
 
 and then for loop all time points, execute accordingly action.
 """
-from ..messengers.wechat.wechat_operator import WeChatOperator
 import datetime
-from ..abilities.post_news import NewsPoster
 import threading
 import time
 import pickle
 import numpy as np
-from ..messengers.uranus.uranus_op import global_uranus_op
-from core.config import global_config
+from config.config import global_config
+from uranuspy.uranus_op import UranusOp
 
 
 MSG_SPLITTER = global_config.msg_splitter
 
 
 class UranusGreetCruiser(object):
-    def __init__(self):
-        pass
+    def __init__(self, msg_executor=None):
+        if isinstance(msg_executor, UranusOp):
+            self.msg_executor = msg_executor
+        else:
+            ValueError('self.msg_executor must be UranusOp object.')
 
     @staticmethod
     def seconds_left_util_tomorrow():
@@ -49,7 +50,7 @@ class UranusGreetCruiser(object):
         return abs(tomorrow - now).seconds
 
     def _main_loop(self):
-        print('[CRUISER URANUS GREET] started uranus greet.')
+        print('[CRUISER URANUS GREET] started uranuspy greet.')
         time_points_string = ['8:00', '9:30', '11:55', '12:50', '15:47', '15:33', '17:00', '23:00']
 
         today_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
@@ -99,42 +100,34 @@ class UranusGreetCruiser(object):
             self._main_loop()
 
     # ---------------------- Methods --------------------------
-    @staticmethod
-    def say_good_morning():
+    def say_good_morning(self):
         msg = '早上好啊' + MSG_SPLITTER + '你起床了吗'
-        global_uranus_op.send_msg_to_subscribers(msg)
+        self.msg_executor.send_msg_to_subscribers(msg)
 
-    @staticmethod
-    def say_news():
+    def say_news(self):
         msg = '每日新闻播报$$想知道今天有啥大新闻吗'
-        global_uranus_op.send_msg_to_subscribers(msg)
+        self.msg_executor.send_msg_to_subscribers(msg)
 
-    @staticmethod
-    def say_eat_launch():
+    def say_eat_launch(self):
         msg = '下班啦' + MSG_SPLITTER + '该去吃午饭了哟'
-        global_uranus_op.send_msg_to_subscribers(msg)
+        self.msg_executor.send_msg_to_subscribers(msg)
 
-    @staticmethod
-    def say_noon_sleep():
+    def say_noon_sleep(self):
         msg = '大中午' + MSG_SPLITTER + '应该睡个午觉'
-        global_uranus_op.send_msg_to_subscribers(msg)
+        self.msg_executor.send_msg_to_subscribers(msg)
 
-    @staticmethod
-    def say_noon_getup():
+    def say_noon_getup(self):
         msg = '午觉睡够了吗' + MSG_SPLITTER + '快起床'
-        global_uranus_op.send_msg_to_subscribers(msg)
+        self.msg_executor.send_msg_to_subscribers(msg)
 
-    @staticmethod
-    def say_after_work():
+    def say_after_work(self):
         msg = '该下班了啊'
-        global_uranus_op.send_msg_to_subscribers(msg)
+        self.msg_executor.send_msg_to_subscribers(msg)
 
-    @staticmethod
-    def say_night_walk():
+    def say_night_walk(self):
         msg = '刚吃完晚饭' + MSG_SPLITTER + '不想出去走走吗'
-        global_uranus_op.send_msg_to_subscribers(msg)
+        self.msg_executor.send_msg_to_subscribers(msg)
 
-    @staticmethod
-    def say_good_night(msg, name):
+    def say_good_night(self):
         msg = '该睡觉了哦' + MSG_SPLITTER + '晚安'
-        global_uranus_op.send_msg_to_subscribers(msg)
+        self.msg_executor.send_msg_to_subscribers(msg)

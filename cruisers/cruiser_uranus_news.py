@@ -47,18 +47,16 @@ HackerNews
 HackerNews
 
 """
-from ..messengers.wechat.wechat_operator import WeChatOperator
 import datetime
-from ..abilities.post_news import NewsPoster
 import threading
 import time
 import pickle
 import numpy as np
-from ..messengers.uranus.uranus_op import global_uranus_op
-from core.config import global_config
+from config.config import global_config
 import hashlib
 import time
 import requests
+from uranuspy.uranus_op import UranusOp
 
 MSG_SPLITTER = global_config.msg_splitter
 
@@ -76,8 +74,11 @@ class News(object):
 
 class NewsCruiser(object):
 
-    def __init__(self):
-        pass
+    def __init__(self, msg_executor):
+        if isinstance(msg_executor, UranusOp):
+            self.msg_executor = msg_executor
+        else:
+            ValueError('self.msg_executor must be UranusOp object.')
 
     @staticmethod
     def seconds_left_util_tomorrow():
@@ -87,7 +88,7 @@ class NewsCruiser(object):
 
     def _main_loop(self):
         print('[CRUISER NEWS] started daily pushing news.')
-        time_points_string = ['8:00', '11:00', '11:30', '12:00', '17:50', '19:00', '23:40']
+        time_points_string = ['8:00', '11:00', '11:30', '12:00', '17:50', '19:00', '20:00', '21:30', '22:00', '23:40']
 
         today_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
         time_points = [datetime.datetime.strptime(today_date + ' ' + i, '%Y-%m-%d %H:%M') for i in time_points_string]
@@ -119,6 +120,12 @@ class NewsCruiser(object):
                 elif work_index == 5:
                     self.broadcast_news()
                 elif work_index == 6:
+                    self.broadcast_news()
+                elif work_index == 7:
+                    self.broadcast_news()
+                elif work_index == 8:
+                    self.broadcast_news()
+                elif work_index == 9:
                     self.broadcast_news()
                     time.sleep(self.seconds_left_util_tomorrow() + 2)
         else:
@@ -162,10 +169,10 @@ class NewsCruiser(object):
     def broadcast_news(self):
         news = self.gather_news()
         if news:
-            msg = '【每日新闻推送】\n'
+            msg = '【每日新闻推送】     '
             for n in range(len(news)):
                 nw = news[n]
-                msg += str(n+1) + '. ' + nw.title + '\n' + nw.url + '\n'
-            global_uranus_op.send_msg_to_subscribers(msg)
+                msg += str(n+1) + '、' + nw.title + '           ' + nw.url + '         '
+            self.msg_executor.send_msg_to_subscribers(msg)
         else:
-            global_uranus_op.send_msg_to_subscribers('目前无法获取新闻，请联系lucasjin')
+            self.msg_executor.send_msg_to_subscribers('目前无法获取新闻，请联系lucasjin')

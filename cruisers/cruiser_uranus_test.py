@@ -21,20 +21,29 @@ Uranus exactly action testing
 
 
 """
-from ..messengers.wechat.wechat_operator import WeChatOperator
 import datetime
-from ..abilities.post_news import NewsPoster
 import threading
 import time
 import pickle
 import numpy as np
-from ..messengers.uranus.uranus_op import global_uranus_op
-from core.config import global_config
-from core.talents.talent_voice import global_baidu_announcer
+from uranuspy.uranus_op import UranusOp
+from config.config import global_config
+import hashlib
+import requests
 
 
 MSG_SPLITTER = global_config.msg_splitter
 
+
+class News(object):
+
+    def __init__(self,
+                 title,
+                 url,
+                 news_time):
+        self.title = title
+        self.url = url
+        self.news_time = news_time
 
 class UranusTestCruiser(object):
     def __init__(self):
@@ -47,8 +56,8 @@ class UranusTestCruiser(object):
         return abs(tomorrow - now).seconds
 
     def _main_loop(self):
-        print('[CRUISER URANUS TEST] started uranus test cruise.')
-        time_points_string = ['8:00', '11:04', '11:06', '11:50', '15:47', '23:17', '23:54', '23:55']
+        print('[CRUISER URANUS TEST] started uranuspy test cruise.')
+        time_points_string = ['8:00', '11:04', '11:06', '11:50', '15:47', '20:16', '23:54', '23:55']
 
         today_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
         time_points = [datetime.datetime.strptime(today_date + ' ' + i, '%Y-%m-%d %H:%M') for i in time_points_string]
@@ -99,56 +108,68 @@ class UranusTestCruiser(object):
     # ---------------------- Methods --------------------------
     @staticmethod
     def say_good_morning():
-        msg = '早上好啊' + MSG_SPLITTER + '你起床了吗'
-        v = global_baidu_announcer.get_voice_mp3_bytes(msg)
-        if v:
-            global_uranus_op.send_voice_to_subscribers(v)
+        pass
 
     @staticmethod
     def say_news():
-        msg = '每日新闻播报' + MSG_SPLITTER + '想知道今天有啥大新闻吗'
-        v = global_baidu_announcer.get_voice_mp3_bytes(msg)
-        if v:
-            global_uranus_op.send_voice_to_subscribers(v)
+        pass
 
     @staticmethod
     def say_eat_launch():
-        msg = '下班啦' + MSG_SPLITTER + '该去吃午饭了哟'
-        v = global_baidu_announcer.get_voice_mp3_bytes(msg)
-        if v:
-            global_uranus_op.send_voice_to_subscribers(v)
+        pass
 
     @staticmethod
     def say_noon_sleep():
-        msg = '大中午' + MSG_SPLITTER + '应该睡个午觉'
-        v = global_baidu_announcer.get_voice_mp3_bytes(msg)
-        if v:
-            global_uranus_op.send_voice_to_subscribers(v)
+        pass
 
     @staticmethod
     def say_noon_getup():
-        msg = '每日新闻播报' + MSG_SPLITTER + '想知道今天有啥大新闻吗'
-        v = global_baidu_announcer.get_voice_mp3_bytes(msg)
-        if v:
-            global_uranus_op.send_voice_to_subscribers(v)
+        pass
 
-    @staticmethod
-    def say_after_work():
-        msg = '该下班了啊'
-        v = global_baidu_announcer.get_voice_mp3_bytes(msg)
-        if v:
-            global_uranus_op.send_voice_to_subscribers(v)
+    def say_after_work(self):
+        news = self.get_news()
+        if news:
+            msg = '新闻新闻！'
+            for n in range(len(news)):
+                nw = news[n]
+                msg += str(n + 1) + '、 ' + nw.title + '\n' + nw.url + '\n'
+            global_uranus_op.send_msg_to_subscribers(msg)
+        else:
+            global_uranus_op.send_msg_to_subscribers('目前无法获取新闻，请联系lucasjin')
 
     @staticmethod
     def say_night_walk():
-        msg = '刚吃完晚饭' + MSG_SPLITTER + '不想出去走走吗'
-        v = global_baidu_announcer.get_voice_mp3_bytes(msg)
-        if v:
-            global_uranus_op.send_voice_to_subscribers(v)
+        pass
 
     @staticmethod
     def say_good_night(msg, name):
-        msg = '该睡觉了哦' + MSG_SPLITTER + '晚安'
-        v = global_baidu_announcer.get_voice_mp3_bytes(msg)
-        if v:
-            global_uranus_op.send_voice_to_subscribers(v)
+        pass
+
+    @staticmethod
+    def get_news():
+        cat = np.random.choice(['Tech', 'Finance', 'Politics', 'Society', 'Sport'])
+        size = np.random.choice(['15', '20'])
+        access_key = 'sQhAwIm1baFAdmbi'
+        secret_key = '944fe952283a4046a17df8835b508d1a'
+        timestamp = int(round(time.time() * 1000))
+        print('timestamp: ', timestamp)
+
+        signature = hashlib.md5('{}{}{}'.format(secret_key, timestamp, access_key).encode('utf-8')).hexdigest()
+        if cat == '':
+            api = 'https://api.xinwen.cn/news/all?size={}&signature={}&timestamp={}&access_key={}'.format(
+                size, signature, timestamp, access_key
+            )
+        else:
+            api = 'https://api.xinwen.cn/news/all?category={}&size={}&signature={}&timestamp={}&access_key={}'.format(
+                cat, size, signature, timestamp, access_key
+            )
+        rp = requests.get(api)
+
+        if rp.json()['success']:
+            all_news = rp.json()['data']['news']
+            results = []
+            for n in all_news:
+                results.append(News(n['title'], n['url'], ''))
+            return results
+        else:
+            return None
