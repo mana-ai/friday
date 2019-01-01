@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0c5de59-305e-40b3-b89c-99e84f50450b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cruisers/create_todo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cruisers/cruiser_todo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules/do_reminder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cruisers/cruiser_uranus_greet.py" beforeDir="false" afterPath="$PROJECT_DIR$/cruisers/cruiser_uranus_greet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/do.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules/do.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules/rules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules/rules_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules/rules_router.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uranus_solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/uranus_solver.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="49" column="16" lean-forward="true" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+            <state relative-caret-position="203">
+              <caret line="36" column="31" lean-forward="true" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
               <folding>
                 <element signature="e#834#845#0" expanded="true" />
               </folding>
@@ -24,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/uranus_solver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+            <state relative-caret-position="-153">
+              <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -37,48 +46,78 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rules/do_search_pic.py">
+        <entry file="file://$PROJECT_DIR$/rules/do_reminder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="93" column="42" lean-forward="true" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+            <state relative-caret-position="1117">
+              <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
               <folding>
-                <element signature="e#767#815#0" expanded="true" />
+                <element signature="e#807#825#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rules/do_subscrib.py">
+        <entry file="file://$PROJECT_DIR$/rules/rules.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="894">
+              <caret line="82" column="34" lean-forward="true" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/rules/rules_router.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
               <folding>
-                <element signature="e#33#51#0" expanded="true" />
+                <element signature="e#1086#1095#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rules/do_tapaware.py">
+        <entry file="file://$PROJECT_DIR$/rules/do.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+            <state relative-caret-position="210">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cruisers/create_todo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
               <folding>
-                <element signature="e#758#776#0" expanded="true" />
+                <element signature="e#760#769#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rules/do_weather.py">
+        <entry file="file://$PROJECT_DIR$/cruisers/cruiser_todo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="217" column="12" selection-start-line="217" selection-start-column="12" selection-end-line="217" selection-end-column="12" />
+            <state relative-caret-position="540">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
-                <element signature="e#825#843#0" expanded="true" />
+                <element signature="e#1032#1071#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cruisers/cruiser_uranus_greet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+              <folding>
+                <element signature="e#951#966#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,7 +127,7 @@
         <entry file="file://$PROJECT_DIR$/utils/regex_verify.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
               <folding>
                 <element signature="e#822#831#0" expanded="true" />
               </folding>
@@ -139,25 +178,20 @@
         <option value="$PROJECT_DIR$/uranuspy/uranus_op.py" />
         <option value="$PROJECT_DIR$/uranuspy/core.py" />
         <option value="$PROJECT_DIR$/uranus_agent_test.py" />
-        <option value="$PROJECT_DIR$/cruisers/cruiser_uranus_greet.py" />
         <option value="$PROJECT_DIR$/cruisers/cruiser_uranus_test.py" />
         <option value="$PROJECT_DIR$/cruisers/cruiser_uranus_news.py" />
         <option value="$PROJECT_DIR$/rules/do_telljoke.py" />
         <option value="$PROJECT_DIR$/uranus_callback.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/rules/common_sense/holidays.py" />
         <option value="$PROJECT_DIR$/config/__init__.py" />
         <option value="$PROJECT_DIR$/rules/__init__.py" />
-        <option value="$PROJECT_DIR$/rules/do.py" />
         <option value="$PROJECT_DIR$/rules/do_tapaware.py" />
         <option value="$PROJECT_DIR$/uranus_engine.py" />
-        <option value="$PROJECT_DIR$/rules/rules_router.py" />
         <option value="$PROJECT_DIR$/rules/do_subscrib.py" />
         <option value="$PROJECT_DIR$/global_session_holder/resume_session.py" />
         <option value="$PROJECT_DIR$/rules/do_search_pic.py" />
         <option value="$PROJECT_DIR$/utils/time_utils/time_extract.py" />
         <option value="$PROJECT_DIR$/rules/do_days.py" />
-        <option value="$PROJECT_DIR$/rules/rules.py" />
         <option value="$PROJECT_DIR$/rules/do_weather.py" />
         <option value="$PROJECT_DIR$/rules/do_answer_me.py" />
         <option value="$PROJECT_DIR$/config/config.py" />
@@ -166,7 +200,14 @@
         <option value="$PROJECT_DIR$/config/parse.py" />
         <option value="$PROJECT_DIR$/uranuspy/utils.py" />
         <option value="$PROJECT_DIR$/uranuspy/sdk.py" />
+        <option value="$PROJECT_DIR$/rules/rules.py" />
         <option value="$PROJECT_DIR$/uranus_solver.py" />
+        <option value="$PROJECT_DIR$/cruisers/cruiser_uranus_greet.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/rules/do.py" />
+        <option value="$PROJECT_DIR$/cruisers/cruiser_todo.py" />
+        <option value="$PROJECT_DIR$/rules/do_reminder.py" />
+        <option value="$PROJECT_DIR$/rules/rules_router.py" />
       </list>
     </option>
   </component>
@@ -188,6 +229,16 @@
               <item name="friday" type="b2602c69:ProjectViewProjectNode" />
               <item name="friday" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="friday" type="b2602c69:ProjectViewProjectNode" />
+              <item name="friday" type="462c0819:PsiDirectoryNode" />
+              <item name="cruisers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="friday" type="b2602c69:ProjectViewProjectNode" />
+              <item name="friday" type="462c0819:PsiDirectoryNode" />
+              <item name="rules" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -200,16 +251,16 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/time_utils" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cruisers" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/rules/common_sense" />
       <recent name="$PROJECT_DIR$/rules" />
-      <recent name="$PROJECT_DIR$/infer_engine" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/utils/time_utils" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -241,18 +292,19 @@
       <workItem from="1546232661953" duration="195000" />
       <workItem from="1546239094661" duration="6316000" />
       <workItem from="1546271540513" duration="602000" />
-      <workItem from="1546331983256" duration="11345000" />
+      <workItem from="1546331983256" duration="11444000" />
+      <workItem from="1546353228111" duration="3037000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26811000" />
+    <option name="totallyTimeSpent" value="29947000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17609046" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17851374" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -279,21 +331,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/talents/talent_voice.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="70" column="38" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/uranus_op.py" />
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="11" lean-forward="true" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/site-packages/itchat/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -333,13 +370,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/uranus_agent.py" />
-    <entry file="file://$PROJECT_DIR$/cruisers/cruiser_uranus_greet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="37" selection-start-line="32" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cruisers/cruiser_uranus_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -391,13 +421,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rules/do_telljoke.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/rules/do_telljoke.py" />
     <entry file="file://$PROJECT_DIR$/global_session_holder/session_holder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -478,20 +502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rules/rules.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rules/do.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/site-packages/uranuspy/sdk.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -540,16 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rules/rules_router.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
-          <folding>
-            <element signature="e#1086#1095#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rules/do_answer_me.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
@@ -577,40 +577,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/uranuspy/core.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/regex_verify.py">
+    <entry file="file://$PROJECT_DIR$/uranuspy/core.py" />
+    <entry file="file://$PROJECT_DIR$/uranuspy/utils.py" />
+    <entry file="file://$PROJECT_DIR$/uranuspy/uranus_op.py" />
+    <entry file="file://$PROJECT_DIR$/uranuspy/sdk.py" />
+    <entry file="file://$PROJECT_DIR$/rules/do_search_pic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        <state relative-caret-position="1320">
+          <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
           <folding>
-            <element signature="e#822#831#0" expanded="true" />
+            <element signature="e#767#815#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/uranuspy/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/uranuspy/uranus_op.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="160" column="35" selection-start-line="160" selection-start-column="35" selection-end-line="160" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rules/do_subscrib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="255">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="e#33#51#0" expanded="true" />
           </folding>
@@ -619,7 +603,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rules/do_tapaware.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
+        <state relative-caret-position="345">
           <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding>
             <element signature="e#758#776#0" expanded="true" />
@@ -629,7 +613,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rules/do_weather.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="3165">
           <caret line="217" column="12" selection-start-line="217" selection-start-column="12" selection-end-line="217" selection-end-column="12" />
           <folding>
             <element signature="e#825#843#0" expanded="true" />
@@ -637,39 +621,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rules/do_search_pic.py">
+    <entry file="file://$PROJECT_DIR$/utils/regex_verify.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="93" column="42" lean-forward="true" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+        <state relative-caret-position="240">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
           <folding>
-            <element signature="e#767#815#0" expanded="true" />
+            <element signature="e#822#831#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/uranuspy/sdk.py">
+    <entry file="file://$PROJECT_DIR$/cruisers/create_todo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="180" column="19" lean-forward="true" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
+        <state relative-caret-position="368">
+          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+          <folding>
+            <element signature="e#760#769#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rules/rules.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="894">
+          <caret line="82" column="34" lean-forward="true" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cruisers/cruiser_uranus_greet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+          <folding>
+            <element signature="e#951#966#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="49" column="16" lean-forward="true" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        <state relative-caret-position="203">
+          <caret line="36" column="31" lean-forward="true" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
           <folding>
             <element signature="e#834#845#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rules/do.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/uranus_solver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+        <state relative-caret-position="-153">
+          <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cruisers/cruiser_todo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#1032#1071#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rules/do_reminder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1117">
+          <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
+          <folding>
+            <element signature="e#807#825#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rules/rules_router.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+          <folding>
+            <element signature="e#1086#1095#0" expanded="true" />
           </folding>
         </state>
       </provider>

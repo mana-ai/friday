@@ -35,6 +35,7 @@ from .do_subscrib import *
 from .do_tapaware import *
 from .do_subscrib import *
 from .do_weather import *
+from .do_reminder import *
 
 
 class RulesRouter(object):
