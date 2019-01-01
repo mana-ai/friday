@@ -63,6 +63,8 @@ def msg_callback(data):
             print('inference result: {}\n\n'.format(rp))
             if MSG_SPLITTER in rp:
                 send_splitter_msg(rp, talk_to)
+            else:
+                return rp
 
 
 uranus = UranusCore('friday', '1195889656')
