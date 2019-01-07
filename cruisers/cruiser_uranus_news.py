@@ -88,7 +88,7 @@ class NewsCruiser(object):
 
     def _main_loop(self):
         print('[CRUISER NEWS] started daily pushing news.')
-        time_points_string = ['8:00', '11:00', '11:30', '12:00', '17:50', '19:00', '20:00', '21:30', '22:00', '23:40']
+        time_points_string = ['8:00', '11:00', '11:30', '12:00', '17:50', '19:00', '20:00', '21:30', '22:54', '23:40']
 
         today_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
         time_points = [datetime.datetime.strptime(today_date + ' ' + i, '%Y-%m-%d %H:%M') for i in time_points_string]
