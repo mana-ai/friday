@@ -27,5 +27,5 @@ class PushSubscriber(Ability):
             msg_executor.add_user_to_subscribers(talk_to_uid)
             return np.random.choice([
                 '好的，以后你可以接收到我的实时提醒',
-                '我将会每天给你推送信息，包括新闻、大家关注的东西、日程提醒等信息',
+                '订阅成功，我将会每天给你推送信息，包括新闻、大家关注的东西、日程提醒等信息',
             ])
