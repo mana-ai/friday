@@ -17,34 +17,7 @@
 # limitations under the License.
 # ------------------------------------------------------------------------
 """
-scrip news from whole internet
-the STRONGEST robot in the world
-
-
-Sending news at certain time in a day
-request the news API frequently
-
-5 time period for news pushing
-
-8:00
-国内新闻
-HackerNews
-
-12:00
-国内新闻
-HackerNews
-
-17:00
-国内新闻
-HackerNews
-
-19:00
-国内新闻
-HackerNews
-
-23:30
-国内新闻
-HackerNews
+Report host machine status
 
 """
 import datetime
@@ -57,22 +30,12 @@ import hashlib
 import time
 import requests
 from uranuspy.uranus_op import UranusOp
+import psutil
 
 MSG_SPLITTER = global_config.msg_splitter
 
 
-class News(object):
-
-    def __init__(self,
-                 title,
-                 url,
-                 news_time):
-        self.title = title
-        self.url = url
-        self.news_time = news_time
-
-
-class NewsCruiser(object):
+class HostMachineCruiser(object):
 
     def __init__(self, msg_executor):
         if isinstance(msg_executor, UranusOp):
@@ -138,17 +101,30 @@ class NewsCruiser(object):
             self._main_loop()
 
     @staticmethod
-    def get_github_trending():
-        pass
+    def get_cpu_state(interval=1):
+        return " CPU: " + str(psutil.cpu_percent(interval)) + "%"
 
+    # function of Get Memory
+    @staticmethod
+    def get_memory_state():
+        phymem = psutil.virtual_memory()
+        line = "Memory: %5s%% %6s/%s" % (
+            phymem.percent,
+            str(int(phymem.used / 1024 / 1024)) + "M",
+            str(int(phymem.total / 1024 / 1024)) + "M"
+        )
+        return line
+
+    @staticmethod
+    def get_disk_usage():
+        disk_usage = psutil.disk_usage('/')
+        return 'Disk: {}/{} {} used'.format(disk_usage.total, disk_usage.used, disk_usage.percent)
 
     def broadcast_news(self):
-        news = self.gather_news()
-        if news:
-            msg = '【每日新闻推送】     '
-            for n in range(len(news)):
-                nw = news[n]
-                msg += str(n+1) + '、' + nw.title + '           ' + nw.url + '         '
-            self.msg_executor.send_msg_to_subscribers(msg)
-        else:
-            self.msg_executor.send_msg_to_subscribers('目前无法获取新闻，请联系lucasjin')
+        msg = '【宿主机信息报告】\n{}\n{}\n{}'.format(
+            self.get_cpu_state(),
+            self.get_memory_state(),
+            self.get_disk_usage()
+        )
+        self.msg_executor.send_msg_to_subscribers(msg)
+
