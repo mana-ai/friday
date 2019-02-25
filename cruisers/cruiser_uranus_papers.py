@@ -169,10 +169,10 @@ class NewsCruiser(object):
     def broadcast_news(self):
         news = self.gather_news()
         if news:
-            msg = '【每日新闻推送】\n'
+            msg = '【每日新闻推送】     '
             for n in range(len(news)):
                 nw = news[n]
-                msg += str(n+1) + '、' + nw.title + '\n' + nw.url + '\n'
+                msg += str(n+1) + '、' + nw.title + '           ' + nw.url + '         '
             self.msg_executor.send_msg_to_subscribers(msg)
         else:
             self.msg_executor.send_msg_to_subscribers('目前无法获取新闻，请联系lucasjin')
