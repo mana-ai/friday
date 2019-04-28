@@ -6,6 +6,12 @@ from global_session_holder import resume_session
 from config.config import global_config
 from utils.regex_verify import is_image_url
 import time
+from loguru import logger as logging
+from alfred.utils.log import init_logger
+
+
+init_logger()
+
 
 MSG_SPLITTER = global_config.msg_splitter
 infer_engine = InferEngine(bot_config=global_config.config)
@@ -39,8 +45,8 @@ def msg_callback(data):
     from_talk = data['content']
     sender_name = data['sender_name']
     talk_to = data['sender']
-    print('-- [incoming] {}:  {}'.format(sender_name, from_talk))
-    print('start inference..')
+    logging.info('-- [incoming] {}:  {}'.format(sender_name, from_talk))
+    logging.info('start inference..')
     talk_to_dict = {
         'user_nick_name': sender_name,
         'user_addr': talk_to,
@@ -53,14 +59,13 @@ def msg_callback(data):
             send_splitter_msg(rp, talk_to)
     else:
         rules_router = RulesRouter()
-        print('-- global_uranus_op: ', global_uranus_op)
         rp = rules_router.reasoning_command(from_talk, talk_to_dict, global_uranus_op)
         if rp is not None:
-            print('rule result: {}\n\n'.format(rp))
+            logging.info('rule result: {}\n\n'.format(rp))
             send_splitter_msg(rp, talk_to)
         else:
             rp = infer_engine.infer(from_talk)
-            print('inference result: {}\n\n'.format(rp))
+            logging.info('inference result: {}\n\n'.format(rp))
             if MSG_SPLITTER in rp:
                 send_splitter_msg(rp, talk_to)
             else:
