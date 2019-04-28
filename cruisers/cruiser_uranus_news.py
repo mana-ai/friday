@@ -57,6 +57,14 @@ import hashlib
 import time
 import requests
 from uranuspy.uranus_op import UranusOp
+import json
+import re
+from loguru import logger as logging
+from alfred.utils.log import init_logger
+
+
+init_logger()
+
 
 MSG_SPLITTER = global_config.msg_splitter
 
@@ -66,9 +74,13 @@ class News(object):
     def __init__(self,
                  title,
                  url,
+                 desc,
+                 pic_url,
                  news_time):
         self.title = title
         self.url = url
+        self.pic_url = pic_url
+        self.desc = desc
         self.news_time = news_time
 
 
@@ -87,8 +99,8 @@ class NewsCruiser(object):
         return abs(tomorrow - now).seconds
 
     def _main_loop(self):
-        print('[CRUISER NEWS] started daily pushing news.')
-        time_points_string = ['8:00', '11:00', '11:30', '12:00', '17:50', '19:00', '20:00', '21:30', '22:54', '23:40']
+        logging.info('[CRUISER NEWS] started daily pushing news.')
+        time_points_string = ['8:00', '11:00', '11:30', '12:00', '17:50', '19:00', '20:00', '21:30', '22:46', '22:49', '23:40']
 
         today_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
         time_points = [datetime.datetime.strptime(today_date + ' ' + i, '%Y-%m-%d %H:%M') for i in time_points_string]
@@ -166,13 +178,65 @@ class NewsCruiser(object):
         else:
             return None
 
+    @staticmethod
+    def gather_163_news():
+        """
+        https://blog.csdn.net/jie310300215/article/details/50990167
+        娱乐类 - BA10TA81wangning
+            电视 - BD2A86BEwangning
+            电影 - BD2A9LEIwangning
+            明星 - BD2AB5L9wangning
+            音乐 - BD2AC4LMwangning
+
+        体育类 - BA8E6OEOwangning
+        财经类 - BA8EE5GMwangning
+        军事类 - BAI67OGGwangning
+        军情 - DE0CGUSJwangning
+        科技 - BA8D4A3Rwangning
+        手机 - BAI6I0O5wangning
+        数码 - BAI6JOD9wangning
+        房产 - BAI6MTODwangning
+        汽车 - BA8DOPCSwangning
+        """
+        m = {
+            '娱乐类.电视': 'BD2A86BEwangning',
+            '体育类': 'BA8E6OEOwangning',
+            '财经类': 'BA8EE5GMwangning',
+            '科技': 'BA8D4A3Rwangning',
+            '数码': 'BAI6JOD9wangning',
+            '房产': 'BAI6MTODwangning',
+            '汽车': 'BA8DOPCSwangning',
+        }
+        r_c = np.random.choice(list(m.values()))
+        url = 'https://3g.163.com/touch/reconstruct/article/list/{}/0-12.html'.format(r_c)
+        rp = requests.get(url)
+        if not rp.ok:
+            return '获取新闻失败，稍后我再试一次'
+        else:
+            a = rp.text
+            a = re.findall(r'artiList(.*)', a)[0].strip('(').strip(')')           
+            all_news = json.loads(a)[r_c]
+            results = []
+            for n in all_news[1:]:
+                results.append(News(n['title'], n['url'], n['digest'], n['imgsrc'], ''))
+            return results
+
     def broadcast_news(self):
-        news = self.gather_news()
+        news = self.gather_163_news()
         if news:
             msg = '【每日新闻推送】\n'
             for n in range(len(news)):
                 nw = news[n]
                 msg += str(n+1) + '、' + nw.title + '\n' + nw.url + '\n'
+            msg += MSG_SPLITTER + news[1].pic_url
+            msg += MSG_SPLITTER + news[2].pic_url
             self.msg_executor.send_msg_to_subscribers(msg)
+            logging.info('broadcast a news.')
         else:
+            logging.error('can not find news, {}'.format(news))
             self.msg_executor.send_msg_to_subscribers('目前无法获取新闻，请联系lucasjin')
+
+
+if __name__ == "__main__":
+    n = NewsCruiser(msg_executor=None)
+    n.gather_163_news()

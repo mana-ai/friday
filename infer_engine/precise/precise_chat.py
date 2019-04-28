@@ -19,6 +19,8 @@
 from chatterbot.chatterbot import ChatBot
 from chatterbot.storage import MongoDatabaseAdapter
 from chatterbot.trainers import ListTrainer
+from chatterbot.trainers import ChatterBotCorpusTrainer
+
 from pymongo import MongoClient
 import os
 from .dynamic_statements import dynamic_list_train, dynamic_list_train_cn
@@ -43,7 +45,7 @@ class PreciseChatter(object):
         print('precise chatter init')
 
     def _init_chatter(self):
-        self.chatter = ChatBot(
+        self.chatbot = ChatBot(
             'Victoria',
             trainer='chatterbot.trainers.ChatterBotCorpusTrainer',
             storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
@@ -70,16 +72,14 @@ class PreciseChatter(object):
         return train_list
 
     def _set_trainer(self):
+        trainer = ChatterBotCorpusTrainer(self.chatbot)
         if self.lan == 'cn':
-            self.chatter.train(
-                "chatterbot.corpus.chinese",
-            )
+            trainer.train("chatterbot.corpus.chinese")
         else:
-            self.chatter.train(
-                "chatterbot.corpus.english",
-            )
-        self.chatter.set_trainer(ListTrainer)
-        self.chatter.train(self._load_train_corpus())
+            trainer.train("chatterbot.corpus.english")
+        list_trainer = ListTrainer(self.chatbot)
+        list_trainer.train(self._load_train_corpus())
+        # self.chatter.train(self._load_train_corpus())
 
     def _collect_talk(self, q, a):
         """
@@ -93,7 +93,7 @@ class PreciseChatter(object):
             f.writelines(q + '&&&&&' + a + '\n')
 
     def get_response(self, from_talk):
-        response = self.chatter.get_response(from_talk)
+        response = self.chatbot.get_response(from_talk)
         response = str(response)
         self._collect_talk(from_talk, response)
         # print('response from precise chat: ', response)
