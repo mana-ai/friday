@@ -148,4 +148,30 @@ all_rules = {
     #               r'^取消订阅优惠券'],
     #     'alias': '订阅商品'
     # },
+
+    # -------- Add translate function ---------------
+    'Translator.act': {
+        'regex': [r'^.*[翻译 ]'],
+        'alias': '翻译'
+    },
+
+
+
+
+    # -------- Add gitlab related function ---------------
+
+
+
+
+    # -------- Add translate function ---------------
+
+
+
+
+
+
+    # -------- Add translate function ---------------
+
+
+
 }

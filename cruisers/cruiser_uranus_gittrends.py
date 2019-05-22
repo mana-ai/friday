@@ -61,18 +61,7 @@ from uranuspy.uranus_op import UranusOp
 MSG_SPLITTER = global_config.msg_splitter
 
 
-class News(object):
-
-    def __init__(self,
-                 title,
-                 url,
-                 news_time):
-        self.title = title
-        self.url = url
-        self.news_time = news_time
-
-
-class NewsCruiser(object):
+class GitTrending(object):
 
     def __init__(self, msg_executor):
         if isinstance(msg_executor, UranusOp):

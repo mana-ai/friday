@@ -1,17 +1,15 @@
+import json
+import requests
+import hashlib
+import urllib
+import random
+from urllib.request import quote, unquote
 
 
-import itchat
 
-def a(data):
-    def inner_func(d):
-        print('fuck ', d)
-    return inner_func(data)
+myurl = 'http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=计算'
+rp = requests.get(myurl)
+print(rp)
+print(rp.json())
 
-
-@a
-def did_receive(data):
-    print(data)
-
-
-if __name__ == '__main__':
-    did_receive()
+# print("翻译结果为：%s"%(target['trans_result']['data'][0]['dst']))

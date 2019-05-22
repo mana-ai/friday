@@ -36,6 +36,9 @@ from .do_tapaware import *
 from .do_subscrib import *
 from .do_weather import *
 from .do_reminder import *
+from .do_translate import *
+
+from alfred.utils.log import logger as logging
 
 
 class RulesRouter(object):
@@ -73,15 +76,15 @@ class RulesRouter(object):
     def reasoning_command(self, from_talk=None, talk_to=None, msg_executor=None, session_hold_bundle=None):
         matched_executors = self.get_match_executor(from_talk)
         if len(matched_executors) > 1:
-            print('[ambiguous rules] got ambiguous rules, should ask for which one.')
-            print('                  choosing the first one: ', matched_executors[0])
+            logging.info('[ambiguous rules] got ambiguous rules, should ask for which one.')
+            logging.info('                  choosing the first one: ', matched_executors[0])
             # alias = [registered_commands_regex[i]['alias'] for i in matched_executors]
             # return ' '.join(alias) + str(len(alias)) + '件事情中你想我做哪一个'
             executor = matched_executors[0]
             response = self.execute_command(executor, from_talk, talk_to, msg_executor)
             return response
         elif len(matched_executors) == 1:
-            print('[target rule] got rule: ', matched_executors[0])
+            logging.info('[target rule] got rule: ', matched_executors[0])
             executor = matched_executors[0]
             response = self.execute_command(executor, from_talk, talk_to, msg_executor)
             return response
