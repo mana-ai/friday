@@ -6,11 +6,7 @@ from global_session_holder import resume_session
 from config.config import global_config
 from utils.regex_verify import is_image_url
 import time
-from loguru import logger as logging
-from alfred.utils.log import init_logger
-
-
-init_logger()
+from alfred.utils.log import logger as logging
 
 
 MSG_SPLITTER = global_config.msg_splitter
@@ -46,7 +42,6 @@ def msg_callback(data):
     sender_name = data['sender_name']
     talk_to = data['sender']
     logging.info('-- [incoming] {}:  {}'.format(sender_name, from_talk))
-    logging.info('start inference..')
     talk_to_dict = {
         'user_nick_name': sender_name,
         'user_addr': talk_to,
