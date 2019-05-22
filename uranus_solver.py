@@ -67,7 +67,7 @@ def msg_callback(data):
                 return rp
 
 
-uranus = UranusCore('jarvis', '1195889656')
+uranus = UranusCore('friday', '1195889656')
 uranus.run_forever()
 uranus.register_callback(msg_callback)
 global_uranus_op = uranus.get_global_op()

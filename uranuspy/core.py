@@ -120,7 +120,7 @@ class UranusCore(object):
                     pass
             except Exception as e:
                 logging.error('Got an exception in msg callback function, full error trace back are: {}'.format(e.__traceback__))
-                self.uranus_op.send_msg_by_user_acc('lucasjin', e.__traceback__)
+                self.uranus_op.send_msg_by_user_acc('lucasjin', str(e.__traceback__))
 
     @staticmethod
     def msgs_callback(msg):
