@@ -151,15 +151,14 @@ all_rules = {
 
     # -------- Add translate function ---------------
     'Translator.act': {
-        'regex': [r'^.*[翻译 ]'],
+        'regex': [r'^.*翻译 '],
         'alias': '翻译'
     },
-
-
-
-
     # -------- Add gitlab related function ---------------
-
+     'GitlabAdder.act': {
+        'regex': [r'.*添加.*会员 '],
+        'alias': '添加奇异gitlab会员'
+    },
 
 
 

@@ -37,6 +37,7 @@ from .do_subscrib import *
 from .do_weather import *
 from .do_reminder import *
 from .do_translate import *
+from .do_gitlab import *
 
 from alfred.utils.log import logger as logging
 

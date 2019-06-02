@@ -52,7 +52,7 @@ class UranusUserCard(object):
             self.user_sign = data['user_sign']
             self.user_city = data['user_city']
             self.user_avatar = data['user_avatar']
-            print('## Find user: {}, {}'.format(self.user_acc, self.user_nick_name))
+            # print('## Find user: {}, {}'.format(self.user_acc, self.user_nick_name))
 
 
 

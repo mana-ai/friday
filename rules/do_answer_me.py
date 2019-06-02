@@ -77,7 +77,7 @@ class SelfAnswer(Ability):
             talk_to_uid = talk_to['user_addr']
             talk_to = talk_to['user_nick_name']
 
-        print('[TALK_TO] talk to: ', talk_to)
+        # print('[TALK_TO] talk to: ', talk_to)
         bot = global_bot
         if session_label is None:
             category = self.dispatch_self(from_talk)
