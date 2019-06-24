@@ -67,8 +67,11 @@ class GitlabAdder(Ability):
         # 添加mana会员 jintian
         # 添加strangeai会员 jintian
         username = from_talk.split(' ')[-1]
-        is_mana = True
-        if 'mana' not in from_talk:
-            is_mana = False
-        rp = self.add_new_member_to_vip_mana(username, is_mana=is_mana)
-        return rp
+        if talk_to_uid == 'usrZK8kZTzEHC':
+            is_mana = True
+            if 'mana' not in from_talk:
+                is_mana = False
+            rp = self.add_new_member_to_vip_mana(username, is_mana=is_mana)
+            return rp
+        else:
+            return '糟糕，被你发现了隐藏的功能，可这是一个高度机密操作，您的权限还不够'
