@@ -25,12 +25,22 @@ class TuringChatter(object):
 
     def __init__(self, bot_config):
         self.api_url = "http://www.tuling123.com/openapi/api?"
-        self.api_key = '82de1ac7c22146e1815aeb546edc6159'
+        self.api_key = ['82de1ac7c22146e1815aeb546edc6159',
+            '4a27247501d242e1a1a05bbdce2228ca']
+        self.crt_apikey = self.api_key[0]
         self.bot = bot_config
+
+    def change_apikey(self):
+        if self.crt_apikey == self.api_key[0]:
+            self.crt_apikey = self.api_key[1]
+        elif self.crt_apikey == self.api_key[1]:
+            self.crt_apikey = self.api_key[0]
+        # elif self.crt_apikey == self.api_key[2]:
+        #     self.crt_apikey = self.api_key[0]
 
     def get_response(self, from_talk):
         data = {
-            'key': self.api_key,
+            'key': self.crt_apikey,
             'info': from_talk,
             'userid': 'nicholas_jela',
         }
@@ -39,6 +49,17 @@ class TuringChatter(object):
             response = r.get('text')
             if '图灵' in response:
                 response = str(response).replace('图灵', self.bot.name)
+            if '当天请求次数已用完' in response:
+                self.change_apikey()
+                response = np.random.choice([
+                    '等一下，我麻麻喊我',
+                    '今天天气不错，要不聊一下天气吧？',
+                    '我现在有点顾左右而言他',
+                    '你喜欢看言情小说吗？',
+                    '我有一千种方式和你开展对话',
+                    '你觉得我是一个人类吗？'
+                ]
+                )
             return response
         except Exception as e:
             print(e)

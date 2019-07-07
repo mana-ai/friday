@@ -13,6 +13,8 @@ MSG_SPLITTER = global_config.msg_splitter
 infer_engine = InferEngine(bot_config=global_config.config)
 global_uranus_op = None
 
+bot2_op = None
+
 
 def send_splitter_msg(msg, talk_to):
     rp_list = msg.split(MSG_SPLITTER)
@@ -38,10 +40,14 @@ def msg_callback(data):
     :param data:
     :return:
     """
-    from_talk = data['content']
-    sender_name = data['sender_name']
-    talk_to = data['sender']
-    logging.info('-- [incoming] {}:  {}'.format(sender_name, from_talk))
+    try:
+        from_talk = data['content']
+        sender_name = data['sender_name']
+        talk_to = data['sender']
+    except Exception as e:
+        logging.info(data)
+        logging.error('{}'.format(e))
+    logging.info('-- [incoming bot1] {}:  {}'.format(sender_name, from_talk))
     talk_to_dict = {
         'user_nick_name': sender_name,
         'user_addr': talk_to,
@@ -67,10 +73,56 @@ def msg_callback(data):
                 return rp
 
 
-uranus = UranusCore('friday', '1195889656')
-uranus.run_forever()
-uranus.register_callback(msg_callback)
-global_uranus_op = uranus.get_global_op()
+def msg_callback_2(data):
+    """
+    data is a simple message structure
+
+    sender:
+    sender_name:
+    content:
+    content_bytes:
+    target:
+    target_name:
+    :param data:
+    :return:
+    """
+    try:
+        from_talk = data['content']
+        sender_name = data['sender_name']
+        talk_to = data['sender']
+    except Exception as e:
+        logging.info(data)
+        logging.error('{}'.format(e))
+    logging.info('-- [incoming bot2] {} {}:  {}'.format(talk_to, sender_name, from_talk))
+    talk_to_dict = {
+        'user_nick_name': sender_name,
+        'user_addr': talk_to,
+    }
+    if talk_to == 'usrZK8kZTzEHC':
+        # this is me, solving my command.
+        rules_router = RulesRouter()
+        rp = rules_router.reasoning_command(from_talk, talk_to_dict, bot2_op)
+        if rp is not None:
+            logging.info('rule result: {}\n\n'.format(rp))
+            return rp
+    else:
+        # sender others msg to me
+        from_talk = '来自{}@{}的消息: {}'.format(sender_name, talk_to, from_talk)
+        bot2_op.send_txt_msg('usrZK8kZTzEHC', from_talk)
+     
+
+# friday bot
+bot1 = UranusCore('friday', '1195889656')
+bot1.run_forever()
+bot1.register_callback(msg_callback)
+global_uranus_op = bot1.get_global_op()
+
+
+# notifer bot
+bot2 = UranusCore('notifer', '1195889656')
+bot2.run_forever()
+bot2.register_callback(msg_callback_2)
+bot2_op = bot2.get_global_op()
 
 
 

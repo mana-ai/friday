@@ -40,6 +40,7 @@ CONTACT_MSG = 3
 _OPCODE_DATA = (websocket.ABNF.OPCODE_TEXT, websocket.ABNF.OPCODE_BINARY)
 
 
+
 class UranusCore(object):
     def __init__(self, user_acc, user_password, debug=False):
         self.user_acc = user_acc
@@ -68,7 +69,7 @@ class UranusCore(object):
                 logging.info('try re-login...')
 
         else:
-            logging.info('[Uranus] now login')
+            logging.info('[Uranus] now logged in!')
             self.uranus_sdk.login(self.user_acc, self.user_password)
 
     def recv(self):
@@ -100,6 +101,7 @@ class UranusCore(object):
                     msg = data
                     if 'test' not in msg:
                         msg_json = json.loads(msg)
+                        # print(msg_json)
                         purpose = msg_json['purpose']
                         if purpose == 'init':
                             logging.info('[uranuspy] initing...')
@@ -110,8 +112,8 @@ class UranusCore(object):
                                 if not msg['read']:
                                     rtn = self.msgs_callback(msg)
                                     if rtn:
+                                        # print('rtn: ', rtn)
                                         self.uranus_op.send_txt_msg(msg['sender'], rtn)
-
                         else:
                             rtn = self.msgs_callback(msg_json['payload'])
                             if rtn:

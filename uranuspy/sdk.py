@@ -31,6 +31,9 @@ import json
 import validators
 
 
+MSG_SPLITTER = " $$$$$ "
+
+
 class UranusUserCard(object):
 
     def __init__(self):
@@ -185,10 +188,11 @@ class UranusSDK(object):
         return bytes(msg_str, encoding='utf-8')
 
     def send_msg(self, target_addr, content, ws):
-        msg = self.get_send_msg(target_addr=target_addr, sender=self.user_addr,
+        for i in content.split(MSG_SPLITTER):
+            msg = self.get_send_msg(target_addr=target_addr, sender=self.user_addr,
                                 sender_name=self.user_nick_name,
                                 content=content, msg_type=0)
-        ws.send(msg)
+            ws.send(msg)
 
     def send_img_msg(self, target_addr, content, ws):
         content = list(bytearray(content))
