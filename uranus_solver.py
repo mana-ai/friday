@@ -69,9 +69,8 @@ def msg_callback(data):
                     send_splitter_msg(rp, talk_to)
                 else:
                     return rp
-
     except Exception as e:
-        logging.info(data)
+        # logging.info(data)
         logging.error('{}'.format(e))
 
 
