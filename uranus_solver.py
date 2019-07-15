@@ -44,33 +44,35 @@ def msg_callback(data):
         from_talk = data['content']
         sender_name = data['sender_name']
         talk_to = data['sender']
+
+        logging.info('-- [incoming bot1] {}:  {}'.format(sender_name, from_talk))
+        talk_to_dict = {
+            'user_nick_name': sender_name,
+            'user_addr': talk_to,
+        }
+
+        # first detect the rules
+        if resume_session.should_resume(talk_to):
+            rp = resume_session.resume_session(from_talk, talk_to)
+            if rp is not None:
+                send_splitter_msg(rp, talk_to)
+        else:
+            rules_router = RulesRouter()
+            rp = rules_router.reasoning_command(from_talk, talk_to_dict, global_uranus_op)
+            if rp is not None:
+                logging.info('rule result: {}\n\n'.format(rp))
+                send_splitter_msg(rp, talk_to)
+            else:
+                rp = infer_engine.infer(from_talk)
+                logging.info('inference result: {}\n\n'.format(rp))
+                if MSG_SPLITTER in rp:
+                    send_splitter_msg(rp, talk_to)
+                else:
+                    return rp
+
     except Exception as e:
         logging.info(data)
         logging.error('{}'.format(e))
-    logging.info('-- [incoming bot1] {}:  {}'.format(sender_name, from_talk))
-    talk_to_dict = {
-        'user_nick_name': sender_name,
-        'user_addr': talk_to,
-    }
-
-    # first detect the rules
-    if resume_session.should_resume(talk_to):
-        rp = resume_session.resume_session(from_talk, talk_to)
-        if rp is not None:
-            send_splitter_msg(rp, talk_to)
-    else:
-        rules_router = RulesRouter()
-        rp = rules_router.reasoning_command(from_talk, talk_to_dict, global_uranus_op)
-        if rp is not None:
-            logging.info('rule result: {}\n\n'.format(rp))
-            send_splitter_msg(rp, talk_to)
-        else:
-            rp = infer_engine.infer(from_talk)
-            logging.info('inference result: {}\n\n'.format(rp))
-            if MSG_SPLITTER in rp:
-                send_splitter_msg(rp, talk_to)
-            else:
-                return rp
 
 
 def msg_callback_2(data):
@@ -90,39 +92,41 @@ def msg_callback_2(data):
         from_talk = data['content']
         sender_name = data['sender_name']
         talk_to = data['sender']
+
+        logging.info('-- [incoming bot2] {} {}:  {}'.format(talk_to, sender_name, from_talk))
+        talk_to_dict = {
+            'user_nick_name': sender_name,
+            'user_addr': talk_to,
+        }
+        if talk_to == 'usrZK8kZTzEHC':
+            # this is me, solving my command.
+            rules_router = RulesRouter()
+            rp = rules_router.reasoning_command(from_talk, talk_to_dict, bot2_op)
+            if rp is not None:
+                logging.info('rule result: {}\n\n'.format(rp))
+                return rp
+        else:
+            # sender others msg to me
+            from_talk = '来自{}@{}的消息: {}'.format(sender_name, talk_to, from_talk)
+            bot2_op.send_txt_msg('usrZK8kZTzEHC', from_talk)
     except Exception as e:
         logging.info(data)
         logging.error('{}'.format(e))
-    logging.info('-- [incoming bot2] {} {}:  {}'.format(talk_to, sender_name, from_talk))
-    talk_to_dict = {
-        'user_nick_name': sender_name,
-        'user_addr': talk_to,
-    }
-    if talk_to == 'usrZK8kZTzEHC':
-        # this is me, solving my command.
-        rules_router = RulesRouter()
-        rp = rules_router.reasoning_command(from_talk, talk_to_dict, bot2_op)
-        if rp is not None:
-            logging.info('rule result: {}\n\n'.format(rp))
-            return rp
-    else:
-        # sender others msg to me
-        from_talk = '来自{}@{}的消息: {}'.format(sender_name, talk_to, from_talk)
-        bot2_op.send_txt_msg('usrZK8kZTzEHC', from_talk)
+
      
 
 # friday bot
-bot1 = UranusCore('friday', '1195889656')
+bot1 = UranusCore('notifer', '1195889656')
 bot1.run_forever()
 bot1.register_callback(msg_callback)
 global_uranus_op = bot1.get_global_op()
 
 
 # notifer bot
-bot2 = UranusCore('notifer', '1195889656')
-bot2.run_forever()
-bot2.register_callback(msg_callback_2)
-bot2_op = bot2.get_global_op()
+# bot2 = UranusCore('notifer', '1195889656')
+# bot2.run_forever()
+# bot2.register_callback(msg_callback)
+# bot2_op = bot2.get_global_op()
 
 
 

@@ -40,8 +40,8 @@ CONTACT_MSG = 3
 _OPCODE_DATA = (websocket.ABNF.OPCODE_TEXT, websocket.ABNF.OPCODE_BINARY)
 
 
-
 class UranusCore(object):
+
     def __init__(self, user_acc, user_password, debug=False):
         self.user_acc = user_acc
         self.user_password = user_password

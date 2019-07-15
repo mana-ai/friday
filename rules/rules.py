@@ -156,7 +156,7 @@ all_rules = {
     },
     # -------- Add gitlab related function ---------------
      'GitlabAdder.act': {
-        'regex': [r'.*添加.*会员 '],
+        'regex': [r'.*[添加|开通|加入].*会员'],
         'alias': '添加奇异gitlab会员'
     },
 
