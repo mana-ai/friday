@@ -71,7 +71,8 @@ def msg_callback(data):
                     return rp
     except Exception as e:
         # logging.info(data)
-        logging.error('{}'.format(e))
+        print(e)
+        # logging.error('{}'.format(e))
 
 
 def msg_callback_2(data):
@@ -109,8 +110,7 @@ def msg_callback_2(data):
             from_talk = '来自{}@{}的消息: {}'.format(sender_name, talk_to, from_talk)
             bot2_op.send_txt_msg('usrZK8kZTzEHC', from_talk)
     except Exception as e:
-        logging.info(data)
-        logging.error('{}'.format(e))
+        print(e)
 
      
 
