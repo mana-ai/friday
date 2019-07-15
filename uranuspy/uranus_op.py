@@ -20,19 +20,21 @@
 a class for send msg through uranuspy
 """
 import numpy as np
-from .sdk import UranusSDK
+from .uranus_sdk import UranusSDK
 import pickle
 import os
 import requests
-from .sdk import UranusUserCard
+from .uranus_sdk import UranusUserCard
+
+from alfred.utils.log import logger as logging
 
 
 class UranusOp(object):
-    def __init__(self, user_acc, user_password, debug=False):
+    def __init__(self, user_acc, user_password, uranus_sdk, debug=False):
         """
         this ws must be provide
         """
-        self.uranus_sdk = UranusSDK()
+        self.uranus_sdk = uranus_sdk
         self.ws_conn = None
         self.user_acc = user_acc
         self.user_password = user_password
@@ -40,7 +42,7 @@ class UranusOp(object):
         self.base_dir = os.path.expanduser('~/.uranuspy')
         if not os.path.exists(self.base_dir):
             os.makedirs(self.base_dir)
-        self._subscribers_f = os.path.join(self.base_dir, 'subscribers.pkl')
+        self._subscribers_f = os.path.join(self.base_dir, '{}_subscribers.pkl'.format(user_acc))
 
         self.subscribers_users = []
         self._load_subscribers()
@@ -50,23 +52,6 @@ class UranusOp(object):
     def set_ws_conn(self, ws_conn):
         self.ws_conn = ws_conn
         self.has_connection = True
-
-    #     self._login()
-    #
-    # def _login(self):
-    #     if self.uranus_sdk.is_login:
-    #         print('[uranuspy global op] op login and online now, ready for pushing messages.')
-    #         try:
-    #             self.ws_conn = websocket.create_connection(self.uranus_sdk.ws_url)
-    #             self.ws_conn.send(self.uranus_sdk.hi())
-    #         except Exception as e:
-    #             self.ws_conn.close()
-    #             print(e)
-    #             print('try re-login...')
-    #
-    #     else:
-    #         print('[Uranus Op] now login')
-    #         self.uranus_sdk.login(self.user_acc, self.user_password)
 
     def _load_subscribers(self):
         if os.path.exists(self._subscribers_f):
@@ -109,8 +94,8 @@ class UranusOp(object):
         """
         if self.has_connection:
             if self.debug:
-                print('~~~~~~~~ uranuspy now send to subscribers......!!!!!!!!!!!!!!!!!!!!!')
-                print('now subscribers: ', self.subscribers_users)
+                logging.info('~~~~~~~~ uranuspy now send to subscribers......!!!!!!!!!!!!!!!!!!!!!')
+                logging.info('now subscribers: ', self.subscribers_users)
             for item in self.subscribers_users:
                 target_address = item['user_addr']
                 self.uranus_sdk.send_msg(target_addr=target_address,
@@ -118,20 +103,20 @@ class UranusOp(object):
                                          ws=self.ws_conn)
 
         else:
-            print('~~~~~~~~ uranuspy send failed. ............................no connection')
+            logging.error('~~~~~~~~ uranuspy send failed. ............................no connection')
 
     def send_voice_to_subscribers(self, msg_bytes):
         if self.has_connection:
             if self.debug:
-                print('~~~~~~~~ uranuspy now send to subscribers......!!!!!!!!!!!!!!!!!!!!!')
-                print('[uranuspy] now subscribers: ', self.subscribers_users)
+                logging.info('~~~~~~~~ uranuspy now send to subscribers......!!!!!!!!!!!!!!!!!!!!!')
+                logging.info('[uranuspy] now subscribers: ', self.subscribers_users)
             for item in self.subscribers_users:
                 target_address = item['user_addr']
                 self.uranus_sdk.send_voice_msg(target_addr=target_address,
                                                content=msg_bytes,
                                                ws=self.ws_conn)
         else:
-            print('~~~~~~~~ uranuspy send failed. ............................no connection')
+            logging.error('~~~~~~~~ uranuspy send failed. ............................no connection')
 
     def get_user_by_user_acc(self, user_acc):
         rp = requests.get(self.uranus_sdk.find_user_url + '?token={}&user_acc={}'.format(self.uranus_sdk.token,
@@ -148,22 +133,22 @@ class UranusOp(object):
                                      ws=self.ws_conn)
 
         else:
-            print('~~~~~~~~ uranuspy send failed. ............................no connection')
+            logging.error('~~~~~~~~ uranuspy send failed. ............................no connection')
 
     def send_txt_msg(self, target_addr, msg):
         if self.has_connection:
             self.uranus_sdk.send_msg(target_addr, msg, self.ws_conn)
         else:
-            print('~~~~~~~~ uranuspy send failed. ............................no connection')
+            logging.error('~~~~~~~~ uranuspy send failed. ............................no connection')
 
     def send_img_msg(self, target_addr, msg):
         if self.has_connection:
             self.uranus_sdk.send_img_msg_v2(target_addr, msg, self.ws_conn)
         else:
-            print('~~~~~~~~ uranuspy send failed. ............................no connection')
+            logging.error('~~~~~~~~ uranuspy send failed. ............................no connection')
 
     def send_voice_msg(self, target_addr, msg):
         if self.has_connection:
             NotImplementedError('You need call Baidu Voice api to generate voice from message.')
         else:
-            print('~~~~~~~~ uranuspy send failed. ............................no connection')
+            logging.error('~~~~~~~~ uranuspy send failed. ............................no connection')

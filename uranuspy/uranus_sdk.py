@@ -29,6 +29,7 @@ import datetime
 import time
 import json
 import validators
+from alfred.utils.log import logger as logging
 
 
 MSG_SPLITTER = " $$$$$ "
@@ -62,21 +63,17 @@ class UranusUserCard(object):
 class UranusSDK(object):
 
     def __init__(self):
-        self.token_store_dir = os.path.expanduser('~/.uranuspy')
-        if not os.path.exists(self.token_store_dir):
-            os.makedirs(self.token_store_dir)
-        self.token_store_f = os.path.join(self.token_store_dir, 'uranuspy.pkl')
-
+        # self.token_store_dir = os.path.expanduser('~/.uranuspy')
+        # if not os.path.exists(self.token_store_dir):
+        #     os.makedirs(self.token_store_dir)
+        # self.token_store_f = os.path.join(self.token_store_dir, 'uranuspy.pkl')
         self.token = None
-
         self.user_addr = None
         self.user_nick_name = None
         self.user_acc = None
 
         self.is_login = False
-
-        self._check_token()
-
+        # self._check_token()
         self.base_url = 'loliloli.pro'
         self.ws_url = 'ws://{}:9000/v1/ws'.format(self.base_url)
 
@@ -102,22 +99,25 @@ class UranusSDK(object):
         rp = requests.post(login_url, data=data)
         if rp.ok:
             rp = rp.json()
-            # print(rp)
             if rp['status'] == 'success':
                 token = rp["data"]["token"]
                 user_addr = rp["data"]["user_addr"]
                 user_nick_name = rp["data"]["user_nick_name"]
-
                 u = {
                     'token': token,
                     'user_addr': user_addr,
                     'user_acc': user_acc,
                     'user_nick_name': user_nick_name
                 }
-                with open(self.token_store_f, 'wb') as f:
-                    pickle.dump(u, f)
+                # with open(self.token_store_f, 'wb') as f:
+                #     pickle.dump(u, f)
                 self.is_login = True
-                print('[uranuspy] login as: ', user_nick_name)
+                self.token = token
+                self.user_addr = user_addr
+                self.user_acc = user_acc
+                self.user_nick_name = user_nick_name
+                logging.info('[uranuspy] login as: {}, userAcc: {}, userAddr: {}'.format(
+                    user_nick_name, user_acc, user_addr))
             else:
                 print('login failed.')
                 exit()
@@ -188,6 +188,7 @@ class UranusSDK(object):
         return bytes(msg_str, encoding='utf-8')
 
     def send_msg(self, target_addr, content, ws):
+        logging.info('sender useraddr: {}'.format(self.user_addr))
         for i in content.split(MSG_SPLITTER):
             msg = self.get_send_msg(target_addr=target_addr, sender=self.user_addr,
                                 sender_name=self.user_nick_name,

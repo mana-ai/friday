@@ -25,8 +25,8 @@ import six
 import websocket
 import json
 
-from uranuspy.sdk import UranusSDK
-from uranuspy.sdk import global_uranus_sdk
+from uranuspy.uranus_sdk import UranusSDK
+from uranuspy.uranus_sdk import global_uranus_sdk
 from uranuspy.uranus_op import UranusOp
 
 from alfred.utils.log import logger as logging
@@ -42,13 +42,13 @@ _OPCODE_DATA = (websocket.ABNF.OPCODE_TEXT, websocket.ABNF.OPCODE_BINARY)
 
 class UranusCore(object):
 
-    def __init__(self, user_acc, user_password, debug=False):
+    def __init__(self, user_acc, user_password, debug=True):
         self.user_acc = user_acc
         self.user_password = user_password
-        self.uranus_sdk = global_uranus_sdk
+        self.uranus_sdk = UranusSDK()
         self.ws = None
         self.debug = debug
-        self.uranus_op = UranusOp(user_acc, user_password, self.debug)
+        self.uranus_op = UranusOp(user_acc, user_password, self.uranus_sdk, self.debug)
 
     def get_global_op(self):
         return self.uranus_op
@@ -62,15 +62,18 @@ class UranusCore(object):
                 # thread.daemon = True
                 thread.start()
                 self.ws.send(self.uranus_sdk.hi())
+                
+                # online broadcast
+                self.uranus_op.send_msg_to_subscribers("我上线啦，欢迎来聊天~")
                 logging.info('[uranuspy] auto serving as {}'.format(self.user_acc))
             except Exception as e:
                 self.ws.close()
                 logging.error(e)
                 logging.info('try re-login...')
-
         else:
             logging.info('[Uranus] now logged in!')
             self.uranus_sdk.login(self.user_acc, self.user_password)
+            self.run_forever()
 
     def recv(self):
         try:
@@ -101,23 +104,25 @@ class UranusCore(object):
                     msg = data
                     if 'test' not in msg:
                         msg_json = json.loads(msg)
-                        # print(msg_json)
-                        purpose = msg_json['purpose']
-                        if purpose == 'init':
-                            logging.info('[uranuspy] initing...')
-                            # we only need to get those unread msg from history messages
-                            all_history_msgs = msg_json['payload']
-                            logging.info('[uranuspy] got latest msgs: {}'.format(len(all_history_msgs)))
-                            for msg in all_history_msgs:
-                                if not msg['read']:
-                                    rtn = self.msgs_callback(msg)
-                                    if rtn:
-                                        # print('rtn: ', rtn)
-                                        self.uranus_op.send_txt_msg(msg['sender'], rtn)
-                        else:
-                            rtn = self.msgs_callback(msg_json['payload'])
-                            if rtn:
-                                self.uranus_op.send_txt_msg(msg_json['payload']['sender'], rtn)
+                        try:
+                            purpose = msg_json['purpose']
+                            if purpose == 'init':
+                                logging.info('[uranuspy] initing...')
+                                # we only need to get those unread msg from history messages
+                                all_history_msgs = msg_json['payload']
+                                logging.info('[uranuspy] got latest msgs: {}'.format(len(all_history_msgs)))
+                                for msg in all_history_msgs:
+                                    if not msg['read']:
+                                        rtn = self.msgs_callback(msg)
+                                        if rtn:
+                                            # print('rtn: ', rtn)
+                                            self.uranus_op.send_txt_msg(msg['sender'], rtn)
+                            else:
+                                rtn = self.msgs_callback(msg_json['payload'])
+                                if rtn:
+                                    self.uranus_op.send_txt_msg(msg_json['payload']['sender'], rtn)
+                        except Exception as e:
+                            logging.error(msg_json)
                 else:
                     pass
             except Exception as e:
