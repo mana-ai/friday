@@ -45,7 +45,7 @@ def msg_callback(data):
         sender_name = data['sender_name']
         talk_to = data['sender']
 
-        logging.info('-- [incoming bot1] {}:  {}'.format(sender_name, from_talk))
+        print('-- [incoming bot1] {}:  {}'.format(sender_name, from_talk))
         talk_to_dict = {
             'user_nick_name': sender_name,
             'user_addr': talk_to,
@@ -92,7 +92,6 @@ def msg_callback_2(data):
         from_talk = data['content']
         sender_name = data['sender_name']
         talk_to = data['sender']
-
         logging.info('-- [incoming bot2] {} {}:  {}'.format(talk_to, sender_name, from_talk))
         talk_to_dict = {
             'user_nick_name': sender_name,
@@ -122,10 +121,10 @@ global_uranus_op = bot1.get_global_op()
 
 
 # notifer bot
-# bot2 = UranusCore('notifer', '1195889656')
-# bot2.run_forever()
-# bot2.register_callback(msg_callback)
-# bot2_op = bot2.get_global_op()
+bot2 = UranusCore('friday', '1195889656')
+bot2.run_forever()
+bot2.register_callback(msg_callback_2)
+bot2_op = bot2.get_global_op()
 
 
 
