@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a0c5de59-305e-40b3-b89c-99e84f50450b" name="Default Changelist" comment="" />
+    <list default="true" id="a0c5de59-305e-40b3-b89c-99e84f50450b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/uranus_solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/uranus_solver.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/uranus_solver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="55" column="40" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
+            <state relative-caret-position="300">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -25,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/global_session_holder/resume_session.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+            <state relative-caret-position="270">
+              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
               <folding>
                 <element signature="e#763#772#0" expanded="true" />
               </folding>
@@ -34,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rules/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
@@ -49,7 +51,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infer_engine/infer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="195">
               <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
               <folding>
                 <element signature="e#51#97#0" expanded="true" />
@@ -61,7 +63,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infer_engine/openapi/turing_chat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
+            <state relative-caret-position="915">
               <caret line="63" column="43" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
               <folding>
                 <element signature="e#763#778#0" expanded="true" />
@@ -73,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rules/rules.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="148" column="25" lean-forward="true" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
+            <state relative-caret-position="2220">
+              <caret line="148" column="25" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -82,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rules/do_gitlab.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="78" column="39" lean-forward="true" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+            <state relative-caret-position="1110">
+              <caret line="78" column="39" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
               <folding>
                 <element signature="e#35#48#0" expanded="true" />
               </folding>
@@ -94,7 +96,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rules/do_search_pic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
+            <state relative-caret-position="1320">
               <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
               <folding>
                 <element signature="e#767#815#0" expanded="true" />
@@ -115,7 +117,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rules/rules_router.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
+            <state relative-caret-position="1080">
               <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
               <folding>
                 <element signature="e#1086#1095#0" expanded="true" />
@@ -197,7 +199,6 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/cruisers/cruiser_uranus_host.py" />
         <option value="$PROJECT_DIR$/uranuspy/core.py" />
-        <option value="$PROJECT_DIR$/uranus_solver.py" />
         <option value="$PROJECT_DIR$/infer_engine/main.py" />
         <option value="$PROJECT_DIR$/infer_engine/openapi/baidu_chat.py" />
         <option value="$PROJECT_DIR$/infer_engine/infer.py" />
@@ -205,6 +206,7 @@
         <option value="$PROJECT_DIR$/rules/rules.py" />
         <option value="$PROJECT_DIR$/rules/do_gitlab.py" />
         <option value="$PROJECT_DIR$/rules/__init__.py" />
+        <option value="$PROJECT_DIR$/uranus_solver.py" />
       </list>
     </option>
   </component>
@@ -218,6 +220,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -236,16 +239,10 @@
               <item name="infer_engine" type="462c0819:PsiDirectoryNode" />
               <item name="openapi" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="friday" type="b2602c69:ProjectViewProjectNode" />
-              <item name="friday" type="462c0819:PsiDirectoryNode" />
-              <item name="rules" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,17 +299,18 @@
       <workItem from="1551109116648" duration="2464000" />
       <workItem from="1558538093165" duration="344000" />
       <workItem from="1563176793639" duration="5062000" />
+      <workItem from="1563682813135" duration="592000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39560000" />
+    <option name="totallyTimeSpent" value="40152000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18820679" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19063005" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -647,19 +645,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rules/rules_router.py">
+    <entry file="file://$PROJECT_DIR$/global_session_holder/resume_session.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+        <state relative-caret-position="270">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
           <folding>
-            <element signature="e#1086#1095#0" expanded="true" />
+            <element signature="e#763#772#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/infer_engine/infer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="195">
           <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
           <folding>
             <element signature="e#51#97#0" expanded="true" />
@@ -669,7 +667,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infer_engine/openapi/turing_chat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
+        <state relative-caret-position="915">
           <caret line="63" column="43" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
           <folding>
             <element signature="e#763#778#0" expanded="true" />
@@ -679,14 +677,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rules/rules.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="148" column="25" lean-forward="true" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
+        <state relative-caret-position="2220">
+          <caret line="148" column="25" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rules/do_gitlab.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="78" column="39" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+          <folding>
+            <element signature="e#35#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rules/do_search_pic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
+        <state relative-caret-position="1320">
           <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
           <folding>
             <element signature="e#767#815#0" expanded="true" />
@@ -701,32 +709,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rules/do_gitlab.py">
+    <entry file="file://$PROJECT_DIR$/rules/rules_router.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="78" column="39" lean-forward="true" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+        <state relative-caret-position="1080">
+          <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
           <folding>
-            <element signature="e#35#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/uranus_solver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="55" column="40" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/global_session_holder/resume_session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <element signature="e#763#772#0" expanded="true" />
+            <element signature="e#1086#1095#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -737,6 +725,16 @@
           <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uranus_solver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>

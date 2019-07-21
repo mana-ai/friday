@@ -7,6 +7,7 @@ from config.config import global_config
 from utils.regex_verify import is_image_url
 import time
 from alfred.utils.log import logger as logging
+import numpy as np
 
 
 MSG_SPLITTER = global_config.msg_splitter
@@ -14,6 +15,8 @@ infer_engine = InferEngine(bot_config=global_config.config)
 global_uranus_op = None
 
 bot2_op = None
+bot2_grafting_container = dict()
+bot2_master_replies = ['今天天气真不错']
 
 
 def send_splitter_msg(msg, talk_to):
@@ -98,16 +101,26 @@ def msg_callback_2(data):
             'user_addr': talk_to,
         }
         if talk_to == 'usrZK8kZTzEHC':
+            bot2_master_replies.append(from_talk)
             # this is me, solving my command.
             rules_router = RulesRouter()
             rp = rules_router.reasoning_command(from_talk, talk_to_dict, bot2_op)
             if rp is not None:
                 logging.info('rule result: {}\n\n'.format(rp))
                 return rp
+            else:
+                rp = infer_engine.infer(from_talk)
+                logging.info('inference result: {}\n\n'.format(rp))
+                if MSG_SPLITTER in rp:
+                    send_splitter_msg(rp, talk_to)
+                else:
+                    return rp
         else:
             # sender others msg to me
-            from_talk = '来自{}@{}的消息: {}'.format(sender_name, talk_to, from_talk)
+            from_talk = '[{}@{}]: {}'.format(sender_name, talk_to, from_talk)
+            bot2_grafting_container[sender_name] = from_talk
             bot2_op.send_txt_msg('usrZK8kZTzEHC', from_talk)
+            bot2_op.send_txt_msg(talk_to, np.random.choice(bot2_master_replies))
     except Exception as e:
         print(e)
 
