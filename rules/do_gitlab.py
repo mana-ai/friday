@@ -66,7 +66,7 @@ class GitlabAdder(Ability):
         if session_label == 'ask_gitlab':
             talk_to_uid = talk_to
             username = from_talk
-            if talk_to_uid == 'usrZK8kZTzEHC':
+            if talk_to_uid == 'usrZK8kZTzEHC' or talk_to_uid == 'usrItug3Lj2c5':
                 is_mana = True
                 if 'mana' not in from_talk:
                     is_mana = False
@@ -91,7 +91,7 @@ class GitlabAdder(Ability):
                                     func_path='GitlabAdder.act', params_dict={})
                 return '请告诉我你要开通的gitlab用户名'
             else:
-                if talk_to_uid == 'usrZK8kZTzEHC':
+                if talk_to_uid == 'usrZK8kZTzEHC' or talk_to_uid == 'usrItug3Lj2c5':
                     is_mana = True
                     if 'mana' not in from_talk:
                         is_mana = False

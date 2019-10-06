@@ -29,7 +29,7 @@ class UranusPusher(Ability):
         if session_label == 'ask_content':
             talk_to_uid = talk_to
             content = from_talk
-            if talk_to_uid == 'usrZK8kZTzEHC':
+            if talk_to_uid == 'usrZK8kZTzEHC' or talk_to_uid == 'usrItug3Lj2c5':
                 return content
             else:
                 return '糟糕，被你发现了隐藏的功能，可这是一个高度机密操作，您的权限还不够'
@@ -50,7 +50,7 @@ class UranusPusher(Ability):
                                     func_path='UranusPusher.act', params_dict={})
                 return '请告诉我你要广播的内容'
             else:
-                if talk_to_uid == 'usrZK8kZTzEHC':
+                if talk_to_uid == 'usrZK8kZTzEHC' or talk_to_uid == 'usrItug3Lj2c5':
                     # start pushing 
                     if msg_executor != None:
                         msg_executor.broadcast_txt_msg(content)
