@@ -103,8 +103,8 @@ class UranusCore(object):
                 if opcode in _OPCODE_DATA:
                     msg = data
                     if 'test' not in msg:
-                        msg_json = json.loads(msg)
                         try:
+                            msg_json = json.loads(json.dumps(eval(msg.replace('false', 'False').replace('true', 'True').replace('null', 'None'))))
                             purpose = msg_json['purpose']
                             if purpose == 'init':
                                 logging.info('[uranuspy] initing...')
@@ -122,7 +122,8 @@ class UranusCore(object):
                                 if rtn:
                                     self.uranus_op.send_txt_msg(msg_json['payload']['sender'], rtn)
                         except Exception as e:
-                            logging.error(msg_json)
+                            logging.error(e)
+                            # logging.error(msg_json)
                 else:
                     pass
             except Exception as e:
