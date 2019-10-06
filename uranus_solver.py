@@ -105,7 +105,7 @@ def msg_callback_2(data):
             'user_nick_name': sender_name,
             'user_addr': talk_to,
         }
-        if talk_to == 'usrZK8kZTzEHC':
+        if talk_to == 'usrZK8kZTzEHC' or talk_to == 'usrItug3Lj2c5':
             bot2_master_replies.append(from_talk)
             # this is me, solving my command.
             rules_router = RulesRouter()
@@ -125,6 +125,7 @@ def msg_callback_2(data):
             from_talk = '[{}@{}]: {}'.format(sender_name, talk_to, from_talk)
             bot2_grafting_container[sender_name] = from_talk
             bot2_op.send_txt_msg('usrZK8kZTzEHC', from_talk)
+            bot2_op.send_txt_msg('usrItug3Lj2c5', from_talk)
             bot2_op.send_txt_msg(talk_to, np.random.choice(bot2_master_replies))
     except Exception as e:
         print(e)
