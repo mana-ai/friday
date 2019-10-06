@@ -45,6 +45,8 @@ class UranusUserCard(object):
         self.user_addr = ''
         self.user_sign = ''
         self.user_city = ''
+        self.user_level = 0
+        self.account_type = 0
 
     def load_from_response(self, rp):
         rp = rp.json()
@@ -56,7 +58,18 @@ class UranusUserCard(object):
             self.user_sign = data['user_sign']
             self.user_city = data['user_city']
             self.user_avatar = data['user_avatar']
+            self.user_level = data['user_level']
             # print('## Find user: {}, {}'.format(self.user_acc, self.user_nick_name))
+    
+    def load_from_dict(self, data):
+        self.user_acc = data['user_acc']
+        self.user_addr = data['user_addr']
+        self.user_nick_name = data['user_nick_name']
+        self.user_sign = data['user_sign']
+        self.user_city = data['user_city']
+        self.user_avatar = data['user_avatar']
+        self.user_level = data['user_level']
+        # print('## Find user: {}, {}'.format(self.user_acc, self.user_nick_name))
 
 
 
@@ -77,9 +90,12 @@ class UranusSDK(object):
         self.base_url = 'loliloli.pro'
         self.ws_url = 'ws://{}:9000/v1/ws'.format(self.base_url)
 
-        self.base_api_url = 'http://{}:9000/api/v1'.format(self.base_url)
+        self.base_api_url = 'http://{}:9000/api/v2'.format(self.base_url)
         self.users_url = self.base_api_url + '/users'
         self.find_user_url = self.base_api_url + '/find_user'
+        self.get_friends_url = self.base_api_url + '/friends'
+        self.get_allusers_url = self.base_api_url + '/get_all_users'
+        
 
     def _check_token(self):
         if os.path.exists(self.token_store_f):
@@ -188,7 +204,7 @@ class UranusSDK(object):
         return bytes(msg_str, encoding='utf-8')
 
     def send_msg(self, target_addr, content, ws):
-        logging.info('sender useraddr: {}'.format(self.user_addr))
+        # logging.info('sender useraddr: {}'.format(self.user_addr))
         for i in content.split(MSG_SPLITTER):
             msg = self.get_send_msg(target_addr=target_addr, sender=self.user_addr,
                                 sender_name=self.user_nick_name,

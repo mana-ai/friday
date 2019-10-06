@@ -125,6 +125,46 @@ class UranusOp(object):
         user.load_from_response(rp)
         return user
 
+    def get_all_friends(self):
+        """
+        get all my friends
+        """
+        rp = requests.get(self.uranus_sdk.get_friends_url + '?token={}'.format(self.uranus_sdk.token))
+        rp = rp.json()
+        if rp['status'] == 'success':
+            all_friends = []
+            for u in rp['data']:
+                user = UranusUserCard()
+                user.load_from_dict(u)
+                all_friends.append(user)
+            return all_friends
+        else:
+            pass
+    
+    def get_all_users(self):
+        """
+        only for level >= 10 users
+        """
+        all_friends = []
+        page_num = 0
+        is_last = False
+        while not is_last:
+            rp = requests.get(self.uranus_sdk.get_allusers_url + '?token={}&page_num={}&per_page=15'.format(
+                self.uranus_sdk.token, page_num))
+            rp = rp.json()
+            if rp['status'] == 'success':
+                if rp['data'] != null:
+                    for u in rp['data']:
+                        user = UranusUserCard()
+                        user.load_from_dict(u)
+                        all_friends.append(user)
+                    page_num += 1
+                else:
+                    is_last = True
+            else:
+                pass
+        return all_friends
+
     def send_msg_by_user_acc(self, user_acc, msg):
         if self.has_connection:
             user = self.get_user_by_user_acc(user_acc)
@@ -140,6 +180,35 @@ class UranusOp(object):
             self.uranus_sdk.send_msg(target_addr, msg, self.ws_conn)
         else:
             logging.error('~~~~~~~~ uranuspy send failed. ............................no connection')
+    
+    def broadcast_txt_msg(self, msg):
+        if self.has_connection:
+            # get all friends, then send msg one by one
+            # all_friends = self.get_all_friends()
+            page_num = 0
+            is_last = False
+            i = 0
+            while not is_last:
+                rp = requests.get(self.uranus_sdk.get_allusers_url + '?token={}&page_num={}&per_page=15'.format(
+                    self.uranus_sdk.token, page_num))
+                rp = rp.json()
+                if rp['status'] == 'success':
+                    if rp['data'] != None:
+                        for u in rp['data']:
+                            i += 1
+                            user = UranusUserCard()
+                            user.load_from_dict(u)
+                            # logging.info('broadcasting: {} {}'.format(user.user_addr, user.user_nick_name))
+                            self.uranus_sdk.send_msg(user.user_addr, msg, self.ws_conn)
+                        page_num += 1
+                    else:
+                        is_last = True
+                else:
+                    pass                
+            logging.info('Now we finished broadcasting!!')
+            self.uranus_sdk.send_msg('usrZK8kZTzEHC', '消息广播完毕....消息共推送到了{}位用户'.format(i), self.ws_conn)
+        else:
+            logging.error('~~~~~~~~ broadcast_txt_msg send failed. ............................no connection')
 
     def send_img_msg(self, target_addr, msg):
         if self.has_connection:

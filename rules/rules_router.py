@@ -26,8 +26,6 @@ match got, this reasoner will trigger a make sure question and apply a holder.
 """
 import re
 from .rules import all_rules
-
-
 from .do_answer_me import *
 from .do_days import *
 from .do_search_pic import *
@@ -38,7 +36,8 @@ from .do_weather import *
 from .do_reminder import *
 from .do_translate import *
 from .do_gitlab import *
-
+from .do_uranus_push import *
+# add new rules also in __init__.py
 from alfred.utils.log import logger as logging
 
 
@@ -87,8 +86,12 @@ class RulesRouter(object):
         elif len(matched_executors) == 1:
             logging.info('[target rule] got rule: ', matched_executors[0])
             executor = matched_executors[0]
-            response = self.execute_command(executor, from_talk, talk_to, msg_executor)
-            return response
+            try:
+                response = self.execute_command(executor, from_talk, talk_to, msg_executor)
+                return response
+            except Exception as e:
+                print('get error: ', str(e))
+                return str(e)
         else:
             return None
 

@@ -155,11 +155,15 @@ all_rules = {
         'alias': '翻译'
     },
     # -------- Add gitlab related function ---------------
-     'GitlabAdder.act': {
+    'GitlabAdder.act': {
         'regex': [r'.*[添加|开通|加入].*会员'],
         'alias': '添加奇异gitlab会员'
     },
-
+    # -------- Add uranus notification pusher -------------
+    'UranusPusher.act': {
+        'regex': [r'.*[推送|广播|发送].*[消息|通知]'],
+        'alias': '推送uranus系统通知'
+    },
 
 
     # -------- Add translate function ---------------

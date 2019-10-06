@@ -21,7 +21,7 @@ class GitlabAdder(Ability):
         print('auth done.')
 
     def check_username_exist(self, username):
-        users = self.gl.users.list(search=username)
+        users = self.gl.users.list(username=username)
         if len(users) >= 1:
             return True, users[0]
         else:

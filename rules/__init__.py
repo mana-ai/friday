@@ -6,5 +6,5 @@ from .do_tapaware import *
 from .do_subscrib import *
 from .do_weather import *
 from .do_gitlab import *
-
+from .do_uranus_push import *
 from config.config import global_config

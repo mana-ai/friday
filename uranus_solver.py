@@ -14,6 +14,9 @@ MSG_SPLITTER = global_config.msg_splitter
 infer_engine = InferEngine(bot_config=global_config.config)
 global_uranus_op = None
 
+NOTI_ADDR = 'usrfNzS5ZYIzo'
+FRID_ADDR = 'usrh8hqEpSWLG'
+
 bot2_op = None
 bot2_grafting_container = dict()
 bot2_master_replies = ['今天天气真不错']
@@ -47,31 +50,33 @@ def msg_callback(data):
         from_talk = data['content']
         sender_name = data['sender_name']
         talk_to = data['sender']
+        if talk_to != NOTI_ADDR and talk_to != FRID_ADDR:
+            print('-- [incoming bot1] {}:  {}'.format(sender_name, from_talk))
+            talk_to_dict = {
+                'user_nick_name': sender_name,
+                'user_addr': talk_to,
+            }
 
-        print('-- [incoming bot1] {}:  {}'.format(sender_name, from_talk))
-        talk_to_dict = {
-            'user_nick_name': sender_name,
-            'user_addr': talk_to,
-        }
-
-        # first detect the rules
-        if resume_session.should_resume(talk_to):
-            rp = resume_session.resume_session(from_talk, talk_to)
-            if rp is not None:
-                send_splitter_msg(rp, talk_to)
-        else:
-            rules_router = RulesRouter()
-            rp = rules_router.reasoning_command(from_talk, talk_to_dict, global_uranus_op)
-            if rp is not None:
-                logging.info('rule result: {}\n\n'.format(rp))
-                send_splitter_msg(rp, talk_to)
+            # first detect the rules
+            if resume_session.should_resume(talk_to):
+                rp = resume_session.resume_session(from_talk, talk_to)
+                if rp is not None:
+                    send_splitter_msg(rp, talk_to)
             else:
-                rp = infer_engine.infer(from_talk)
-                logging.info('inference result: {}\n\n'.format(rp))
-                if MSG_SPLITTER in rp:
+                rules_router = RulesRouter()
+                rp = rules_router.reasoning_command(from_talk, talk_to_dict, global_uranus_op)
+                if rp is not None:
+                    logging.info('rule result: {}\n\n'.format(rp))
                     send_splitter_msg(rp, talk_to)
                 else:
-                    return rp
+                    rp = infer_engine.infer(from_talk)
+                    logging.info('inference result: {}\n\n'.format(rp))
+                    if MSG_SPLITTER in rp:
+                        send_splitter_msg(rp, talk_to)
+                    else:
+                        return rp
+        else:
+            logging.info('passing this message from myself: {} {}'.format(sender_name, talk_to))
     except Exception as e:
         # logging.info(data)
         print(e)
